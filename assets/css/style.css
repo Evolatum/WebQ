@@ -94,8 +94,8 @@ body{
     background: #5ef4ff;
 }
 
-/* Checkbox Styles */
- .checkboxContainer {
+/* Checkmark & Radio Container Styles */
+ .checkContainer {
     display: block;
     position: relative;
     padding-left: 35px;
@@ -108,7 +108,7 @@ body{
     user-select: none;
   }
   
-  .checkboxContainer input {
+  .checkContainer input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -116,7 +116,8 @@ body{
     width: 0;
   }
 
-  .checkmark {
+  /* Checkmark Styles */
+  .checkMark {
     position: absolute;
     top: 0;
     left: 0;
@@ -128,13 +129,35 @@ body{
     transition: border .3s;
   }
   
-  .checkboxContainer:hover input ~ .checkmark {
+  .checkContainer:hover input ~ .checkMark {
     border: 1px solid #5ef4ff;
   }
   
-  .checkboxContainer input:checked ~ .checkmark {
+  .checkContainer input:checked ~ .checkMark {
     background-color: #5ef4ff;
   }
+
+/* Radio Styles */
+.checkRadio {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: transparent;
+    border-radius: 50%;
+    border: 1px solid #17a2b8;
+    -webkit-transition: .3s;
+    transition: border .3s;
+}
+
+.checkContainer:hover input ~ .checkRadio {
+    border: 1px solid #5ef4ff;
+}
+
+.checkContainer input:checked ~ .checkRadio {
+    background-color: #5ef4ff;
+}
 
 @font-face {
     font-family: 'Tajawal';

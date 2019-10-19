@@ -4,11 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Bootstrap CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- Firebase References -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-analytics.js"></script>
+
+
     <title>Login Tests</title>
 </head>
 <body>
-    
+    <div class="container">
+        <form id="login">
+            <div>
+                <input id="email" type="text" placeholder="Email...">
+            </div>
+            <div>
+                <input id="password" type="password" placeholder="Password...">
+            </div>
+            <div>
+                <button id="sign-in">Sign In/Register</button>
+                <button id="sign-out">Sign Out</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+    $(document).ready(function(){
+        // Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDV2jSs1bJRIJLygANSbPVqFILaUL6CHgs",
+            authDomain: "webq-d2f02.firebaseapp.com",
+            databaseURL: "https://webq-d2f02.firebaseio.com",
+            projectId: "webq-d2f02",
+            storageBucket: "webq-d2f02.appspot.com",
+            messagingSenderId: "165215674699",
+            appId: "1:165215674699:web:ef997945ed83af9c97c8ce",
+            measurementId: "G-TBK5ELGWZC"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        
+        // Handle auth events.
+        firebase.auth().onAuthStateChanged(function(user) {
+            window.user = user;
+            // Step 1:
+            //  If no user, sign in anonymously with firebase.auth().signInAnonymously()
+            //  If there is a user, log out out user details for debugging purposes.
+        });
+
+        $("#sign-in").on("click",function(event){
+            event.preventDefault();
+            event.stopPropagation();
+
+            var email = $("#email").val().trim();
+            var password = $("#password").val().trim();
+            var credential = firebase.auth.EmailAuthProvider.credential(email, password);
+            var auth = firebase.auth();
+            var currentUser = auth.currentUser;
+        });
+
+        $("#sign-out").on("click",function(event){
+            event.preventDefault();
+            event.stopPropagation();
+            firebase.auth().signOut();
+        });
+    });
+    </script>
+
 </body>
 </html>

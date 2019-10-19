@@ -21,11 +21,18 @@
     <!-- Firebase UI CSS-->
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
 
-
     <title>Login Tests</title>
+    <style>
+        body{
+            background: #6c757d;
+        }
+    </style>
 </head>
 <body>
     <div id="firebase-auth-container"></div>
+    <div>
+        <button type="submit" class="btn btn-primary" id="logoff">Logoff</button>
+    </div>
 
     <script>
     $(document).ready(function(){
@@ -50,6 +57,10 @@
         // Initialize FirebaseUI widget
         var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
+        // Initialize referente to Firebase Real-Time DB
+        var database = firebase.database();
+        var dbRef = database.ref();
+
         var uiConfig = {
             callbacks: {
                 signInSuccessWithAuthResult: function(authResult, redirectUrl) {
@@ -67,7 +78,7 @@
             },
             // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
             signInFlow: 'popup',
-            signInSuccessUrl: '<url-to-redirect-to-on-success>',
+            signInSuccessUrl: './auth.html',
             signInOptions: [
                 // Leave the lines as is for the providers you want to offer your users.
                 firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -83,19 +94,31 @@
             privacyPolicyUrl: '<your-privacy-policy-url>'
             };
 
+            $("#logoff").on("click", function(user){
+                // event.preventDefault();
+                if(user){
+                    firebase.auth().signOut().then(function() {
+                    // Sign-out successful.
+                    }).catch(function(error) {
+                    // An error happened.
+                    console.log("valio Brga por: " + error);
+                    });
+                }
+            });
+
+
             // Handling whether user is logged in or not
             firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
-                    // console.log(user);
+                    $("#logoff").show();
                     console.log(user.displayName);
                     console.log(user.email);
-                    // console.log(user.photoURL);
                     console.log(user.emailVerified);
                     console.log(user.uid);
-                    // console.log(user.getToken);
                     
                 } else {
                     // No user is signed in.
+                    $("#logoff").hide();
                     ui.start('#firebase-auth-container', uiConfig);
                 }
             });

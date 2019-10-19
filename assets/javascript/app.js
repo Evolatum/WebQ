@@ -1,6 +1,7 @@
 var rates = {
     k:["08b755891c7a22","97700ef"],
     initialized:false,
+    decimalCount:100,
     mxnToUsd:0.05228100108169591,
     mxnToEur:0.04684694307300018,
     mxnToCad:0.06861259498803295,
@@ -22,18 +23,30 @@ var rates = {
         }else{
             console.log("Already initialized");
             console.log(`100 MXN = ${rates.toUSD(100)} USD`);
+            console.log(`100 USD = ${rates.fromUSD(100)} MXN`);
             console.log(`100 MXN = ${rates.toEUR(100)} EUR`);
+            console.log(`100 EUR = ${rates.fromEUR(100)} MXN`);
             console.log(`100 MXN = ${rates.toCAD(100)} CAD`);
+            console.log(`100 CAD = ${rates.fromCAD(100)} MXN`);
         }
     },
-    toUSD(MXN){
-        return Math.round(MXN*this.mxnToUsd*100)/100;
+    toUSD:function(MXN){
+        return Math.round(MXN*this.mxnToUsd*this.decimalCount)/this.decimalCount;
     },
-    toEUR(MXN){
-        return Math.round(MXN*this.mxnToEur*100)/100;
+    toEUR:function(MXN){
+        return Math.round(MXN*this.mxnToEur*this.decimalCount)/this.decimalCount;
     },
-    toCAD(MXN){
-        return Math.round(MXN*this.mxnToCad*100)/100;
+    toCAD:function(MXN){
+        return Math.round(MXN*this.mxnToCad*this.decimalCount)/this.decimalCount;
+    },
+    fromUSD:function(USD){
+        return Math.round(USD/this.mxnToUsd*this.decimalCount)/this.decimalCount;
+    },
+    fromEUR:function(EUR){
+        return Math.round(EUR/this.mxnToEur*this.decimalCount)/this.decimalCount;
+    },
+    fromCAD:function(CAD){
+        return Math.round(CAD/this.mxnToCad*this.decimalCount)/this.decimalCount;
     },
 }
 

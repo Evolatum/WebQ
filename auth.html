@@ -16,25 +16,16 @@
     <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-analytics.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+
+    <!-- Firebase UI CSS-->
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
 
 
     <title>Login Tests</title>
 </head>
 <body>
-    <div class="container">
-        <form id="login">
-            <div>
-                <input id="email" type="text" placeholder="Email...">
-            </div>
-            <div>
-                <input id="password" type="password" placeholder="Password...">
-            </div>
-            <div>
-                <button id="sign-in">Sign In/Register</button>
-                <button id="sign-out">Sign Out</button>
-            </div>
-        </form>
-    </div>
+    <div id="firebase-auth-container"></div>
 
     <script>
     $(document).ready(function(){
@@ -53,30 +44,61 @@
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
         
-        // Handle auth events.
-        firebase.auth().onAuthStateChanged(function(user) {
-            window.user = user;
-            // Step 1:
-            //  If no user, sign in anonymously with firebase.auth().signInAnonymously()
-            //  If there is a user, log out out user details for debugging purposes.
-        });
+        // Get current user profile;
+        var user = firebase.auth().currentUser;
 
-        $("#sign-in").on("click",function(event){
-            event.preventDefault();
-            event.stopPropagation();
+        // Initialize FirebaseUI widget
+        var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-            var email = $("#email").val().trim();
-            var password = $("#password").val().trim();
-            var credential = firebase.auth.EmailAuthProvider.credential(email, password);
-            var auth = firebase.auth();
-            var currentUser = auth.currentUser;
-        });
+        var uiConfig = {
+            callbacks: {
+                signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+                // User successfully signed in.
+                // Return type determines whether we continue the redirect automatically
+                // or whether we leave that to developer to handle.
+                return true;
+                },  
+                uiShown: function() {
+                // The widget is rendered.
+                // Hide the loader.
+                $("#loader").hide();
+                // document.getElementById('loader').style.display = 'none';
+                }
+            },
+            // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+            signInFlow: 'popup',
+            signInSuccessUrl: '<url-to-redirect-to-on-success>',
+            signInOptions: [
+                // Leave the lines as is for the providers you want to offer your users.
+                firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+                // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+                firebase.auth.GithubAuthProvider.PROVIDER_ID,
+                firebase.auth.EmailAuthProvider.PROVIDER_ID,
+                // firebase.auth.PhoneAuthProvider.PROVIDER_ID
+            ],
+            // Terms of service url.
+            tosUrl: '<your-tos-url>',
+            // Privacy policy url.
+            privacyPolicyUrl: '<your-privacy-policy-url>'
+            };
 
-        $("#sign-out").on("click",function(event){
-            event.preventDefault();
-            event.stopPropagation();
-            firebase.auth().signOut();
-        });
+            // Handling whether user is logged in or not
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    // console.log(user);
+                    console.log(user.displayName);
+                    console.log(user.email);
+                    // console.log(user.photoURL);
+                    console.log(user.emailVerified);
+                    console.log(user.uid);
+                    // console.log(user.getToken);
+                    
+                } else {
+                    // No user is signed in.
+                    ui.start('#firebase-auth-container', uiConfig);
+                }
+            });
     });
     </script>
 

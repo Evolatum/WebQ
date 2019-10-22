@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Web-Q</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/86912c1614.js" crossorigin="anonymous"></script>
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark fixed-top bg-dark">
+        <span class="navbar-brand"><h1>Web-Q</h1></span>
+        <div class="navbar-item mr-auto">
+            <span class="navbar-text" id="navQuote">Quote</span>
+            <span class="navbar-text" id="navRegister">Register as Developer</span>
+            <span class="navbar-text" id="navTemp">Temp</span>
+        </div>
+        <div class="navbar-item dropdown">
+            <button class="btn btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fad fa-users-cog"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" target="_blank" href="#">Joaquin</a>
+                <a class="dropdown-item" target="_blank" href="#">Juan Pablo</a>
+                <a class="dropdown-item" target="_blank" href="https://omarldev.github.io/DevPortfolio/">Omar</a>
+                <a class="dropdown-item" target="_blank" href="https://evolatum.github.io/Portfolio/index.html">Santiago</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="main container-fluid">
+        <div class="jumbotron bg-dark text-light">
+            <h2>Quotes</h2>
+
+            <div class="row">
+            
+                <!-- Stack Radio -->
+                <div class="col-xl-4 col-md-6 col-12">
+                    <div class="jumboForm">
+                        <h3>Stack</h3>
+                        <div class="form-row">
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer">React
+                                    <input type="radio" name="radio" checked="checked">
+                                    <span class="checkRadio"></span>
+                                </label>
+                            </div>
+                                
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer">MongoDB
+                                    <input type="radio" name="radio">
+                                    <span class="checkRadio"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer">Node.js
+                                    <input type="radio" name="radio">
+                                    <span class="checkRadio"></span>
+                                </label>
+                            </div>
+
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer">Temp
+                                    <input type="radio" name="radio">
+                                    <span class="checkRadio"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Framework Radio -->
+                <div class="col-xl-4 col-md-6 col-12">
+                    <div class="jumboForm">
+                        <h3>Framework</h3>
+                        <div class="form-row">
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer">Bootstrap
+                                    <input type="radio" name="radio">
+                                    <span class="checkRadio"></span>
+                                </label>
+                            </div>
+                                
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer">Materialize
+                                    <input type="radio" name="radio">
+                                    <span class="checkRadio"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer">Temp
+                                    <input type="radio" name="radio">
+                                    <span class="checkRadio"></span>
+                                </label>
+                            </div>
+
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer">Custom
+                                    <input type="radio" name="radio" checked="checked">
+                                    <span class="checkRadio"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deadline Slider -->
+                <div class="col-xl-4 col-md-6 col-12">
+                    <div class="jumboForm">
+                        <h3>Deadline: <span id="headerDeadline">30</span> days</h3>
+                        <div class="form-row">
+                            <div class="sliderContainer">
+                                <!--<label for="sliderDeadline" class="textSlider">Temp</label>-->
+                                <input type="range" min="2" max="100" value="30" step="2" class="slider" id="sliderDeadline">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pages Slider -->
+                <div class="col-xl-4 col-md-6 col-12">
+                    <div class="jumboForm">
+                        <h3>Pages: <span id="headerPages">5</span></h3>
+                        <div class="form-row">
+                            <div class="sliderContainer">
+                                <!--<label for="sliderPages" class="textSlider">Temp</label>-->
+                                <input type="range" min="1" max="10" value="5" class="slider" id="sliderPages">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Features Checkmark -->
+                <div class="col-xl-4 col-md-6 col-12">
+                    <div class="jumboForm">
+                        <h3>Additional Features</h3>
+                        <div class="form-row">
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer">Responsive
+                                    <input type="checkbox">
+                                    <span class="checkMark"></span>
+                                </label>
+                            </div>
+                                
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer"><span data-toggle="tooltip" data-placement="top" title="Search Engine Optimization">SEO</span>
+                                    <input type="checkbox">
+                                    <span class="checkMark"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer">E-Commerce
+                                    <input type="checkbox">
+                                    <span class="checkMark"></span>
+                                </label>
+                            </div>
+
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer">Temp
+                                    <input type="checkbox">
+                                    <span class="checkMark"></span>
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Javascript links -->
+    <div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="assets/javascript/app.js"></script>
+    </div>
+
+</body>
+</html>

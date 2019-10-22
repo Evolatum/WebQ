@@ -1,0 +1,202 @@
+/* Background pattern from Toptal Subtle Patterns */
+body{
+    background-image: url(../images/what-the-hex-dark/what-the-hex-dark.png);
+    background-color: black;
+    font-family: 'Tajawal', sans-serif;
+}
+
+/* Navbar Styles */
+
+.navbar{
+    font-size:22px;
+    -webkit-box-shadow: 0px 6px 10px 2px rgba(0,0,0,0.54);
+    -moz-box-shadow: 0px 6px 10px 2px rgba(0,0,0,0.54);
+    box-shadow: 0px 6px 10px 2px rgba(0,0,0,0.54);
+}
+
+.navbar-text{
+margin:10px;
+}
+
+.navbar-text:hover,.navbar-text:active{
+    color: #5ef4ff;
+    cursor: pointer;
+}
+
+.dropdown-menu{
+    background-color: rgb(31, 31, 31);
+}
+
+.dropdown-item{
+    color: white;
+}
+
+.dropdown-item:hover,.dropdown-item:active{
+    color: #5ef4ff;
+    background-color: inherit;
+}
+
+/* General Content Style */
+
+.main{
+    margin-top: 6em;
+}
+
+.jumbotron{
+    padding: 1em;
+}
+
+.jumboForm{
+    border: 1px solid #17a2b8;
+    border-radius: 5px;
+    padding: 1em;
+    margin:.5em;
+}
+
+h3{
+    margin-bottom: 1.5rem;
+}
+
+/* Form Styles */
+
+/* Slider Styles */
+.sliderContainer {
+    width:100%;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 22px;
+    outline: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.textSlider{
+    margin:0;
+    padding: 0;
+    position: relative;
+    top:-0.3em;
+}
+
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 25px;
+    width:100%;
+    outline: none;
+    background: transparent;
+    border: 1px solid #17a2b8;
+    -webkit-transition: .3s;
+    transition: border .3s;
+}
+
+.slider:hover {
+    border: 1px solid #5ef4ff;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 0;
+    outline:none;
+    background: #17a2b8;
+    cursor: pointer;
+    -webkit-transition: .3s;
+    transition: background .3s;
+}
+
+.slider::-webkit-slider-thumb:hover{
+    background: #5ef4ff;
+}
+
+.slider::-moz-range-thumb {
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border:none;
+    border-radius: 0;
+    outline:none;
+    background: #17a2b8;
+    cursor: pointer;
+    -webkit-transition: .3s;
+    transition: background .3s;
+}
+
+.slider::-moz-range-thumb:hover,.slider::-moz-range-thumb:active{
+    background: #5ef4ff;
+}
+
+/* Checkmark & Radio Container Styles */
+.checkContainer {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.checkContainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Checkmark Styles */
+.checkMark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: transparent;
+    border: 1px solid #17a2b8;
+    -webkit-transition: .3s;
+    transition: border .3s;
+}
+
+.checkContainer:hover input ~ .checkMark {
+    border: 1px solid #5ef4ff;
+}
+
+.checkContainer input:checked ~ .checkMark {
+    background-color: #5ef4ff;
+}
+
+/* Radio Styles */
+.checkRadio {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: transparent;
+    border-radius: 50%;
+    border: 1px solid #17a2b8;
+    -webkit-transition: .3s;
+    transition: border .3s;
+}
+
+.checkContainer:hover input ~ .checkRadio {
+    border: 1px solid #5ef4ff;
+}
+
+.checkContainer input:checked ~ .checkRadio {
+    background-color: #5ef4ff;
+}
+
+/* Font Declarations */
+@font-face {
+    font-family: 'Tajawal';
+    src: url(../fonts/Tajawal/Tajawal-Regular.ttf);
+}

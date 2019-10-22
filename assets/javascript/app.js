@@ -1,3 +1,4 @@
+//Object with currency exchange API and pertinent methods
 var rates = {
     k:["08b755891c7a22","97700ef"],
     initialized:false,
@@ -50,6 +51,22 @@ var rates = {
     },
 }
 
-$(document).on("click", "#navTemp", function() {
-    rates.init();
+//Form control methods
+var formsControl={
+    changeHeader:function(id){
+        $(`#header${id.replace('slider','')}`).text($(`#${id}`).val());
+    }
+}
+
+//Receives click on Temp Button
+$(document).on("click", "#navTemp", rates.init);
+
+//Receives any changes made to an input range
+$(document).on("input", 'input[type=range]', function(){
+    formsControl.changeHeader($(this).attr("id").toString());
 });
+
+//Initializes Bootstrap Tooltips
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })

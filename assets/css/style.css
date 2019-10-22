@@ -152,6 +152,12 @@ h3{
     width: 0;
 }
 
+.checkText{
+    position: relative;
+    top:-4px;
+    margin-left:4px;
+}
+
 /* Checkmark Styles */
 .checkMark {
     position: absolute;

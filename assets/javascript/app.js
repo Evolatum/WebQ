@@ -1,4 +1,4 @@
-//Object with currency exchange API and pertinent methods
+//Object with currency exchange API and methods
 var rates = {
     k:["08b755891c7a22","97700ef"],
     initialized:false,
@@ -51,7 +51,7 @@ var rates = {
     },
 }
 
-//Form control methods
+//Object with front-end properties and methods
 var frontControl={
     //Time for fade in and out of content
     delayTime:400,

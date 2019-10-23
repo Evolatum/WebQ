@@ -53,6 +53,12 @@ var rates = {
 
 //Form control methods
 var formsControl={
+    initHeaders:function(){
+        $(".rangeHeader").each(function(){
+            var id = $(this).attr("id").replace("header","");
+            $(`#header${id}`).text($(`#slider${id}`).val());
+        });
+    },
     changeHeader:function(id){
         $(`#header${id.replace('slider','')}`).text($(`#${id}`).val());
     }
@@ -67,6 +73,24 @@ $(document).on("input", 'input[type=range]', function(){
 });
 
 //Initializes Bootstrap Tooltips
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
+$(function () {$('[data-toggle="tooltip"]').tooltip()})
+
+formsControl.initHeaders();
+
+var delayTime = 400;
+
+//On navbar quote click
+$(document).on("click", "#navQuote", function(){
+    $("#navQuote").addClass("unselectable");
+    $("#quote").delay(delayTime).fadeIn(delayTime);
+    $("#navRegister").removeClass("unselectable");
+    $("#register").fadeOut(delayTime);
+});
+
+//On navbar register click
+$(document).on("click", "#navRegister", function(){
+    $("#navRegister").addClass("unselectable");
+    $("#register").delay(delayTime).fadeIn(delayTime);
+    $("#navQuote").removeClass("unselectable");
+    $("#quote").fadeOut(delayTime);
+});

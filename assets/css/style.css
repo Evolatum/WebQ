@@ -23,6 +23,21 @@ margin:10px;
     cursor: pointer;
 }
 
+.unselectable { 
+    color: #17a2b8 !important;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.unselectable:hover,.unselectable:active{
+    color: #17a2b8;
+    cursor: default;
+}
+
 .dropdown-menu{
     background-color: rgb(31, 31, 31);
 }

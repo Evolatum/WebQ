@@ -6,21 +6,36 @@ body{
 }
 
 /* Navbar Styles */
-
 .navbar{
     font-size:22px;
     -webkit-box-shadow: 0px 6px 10px 2px rgba(0,0,0,0.54);
     -moz-box-shadow: 0px 6px 10px 2px rgba(0,0,0,0.54);
     box-shadow: 0px 6px 10px 2px rgba(0,0,0,0.54);
+    height:82px;
 }
 
 .navbar-text{
-margin:10px;
+    margin: 0 10px;
 }
 
 .navbar-text:hover,.navbar-text:active{
     color: #5ef4ff;
     cursor: pointer;
+}
+
+.unselectable { 
+    color: #17a2b8 !important;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.unselectable:hover,.unselectable:active{
+    color: #17a2b8;
+    cursor: default;
 }
 
 .dropdown-menu{
@@ -199,6 +214,31 @@ h3{
 
 .checkContainer input:checked ~ .checkRadio {
     background-color: #5ef4ff;
+}
+
+@media (max-width: 599px){
+    .navbar{
+        padding: 0 1rem;
+        height: 100px;
+    }
+
+    .navbar-text{
+        font-size:.8em;
+    }
+
+    .dropdown{
+        margin-left:100px;
+    }
+
+    .main{
+        margin-top:7em;
+    }
+
+    .mr-auto{
+        margin:auto;
+        position: relative;
+        top:-15px;
+    }
 }
 
 /* Font Declarations */

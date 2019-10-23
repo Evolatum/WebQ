@@ -94,3 +94,21 @@ $(document).on("click", "#navRegister", function(){
     $("#navQuote").removeClass("unselectable");
     $("#quote").fadeOut(delayTime);
 });
+
+
+$(window).resize(function(){
+    resize();
+});
+
+$(document).ready(function(){
+    resize();
+});
+
+function resize(){
+    if($(window).width() < 600){
+        $(".mr-auto").insertAfter(".dropdown");
+    }
+    else {
+        $(".dropdown").insertAfter(".mr-auto");
+    }
+}

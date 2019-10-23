@@ -52,63 +52,67 @@ var rates = {
 }
 
 //Form control methods
-var formsControl={
-    initHeaders:function(){
+var frontControl={
+    //Time for fade in and out of content
+    delayTime:400,
+
+    //Changes nav depending on window size
+    resizeNav:function(){
+        if($(window).width() < 600){
+            $(".mr-auto").insertAfter(".dropdown");
+        }
+        else {
+            $(".dropdown").insertAfter(".mr-auto");
+        }
+    },
+
+    //Initializes headers of range inputs and nav size
+    init:function(){
+        this.resizeNav();
         $(".rangeHeader").each(function(){
             var id = $(this).attr("id").replace("header","");
             $(`#header${id}`).text($(`#slider${id}`).val());
         });
     },
+
+    //Changes header of range input
     changeHeader:function(id){
         $(`#header${id.replace('slider','')}`).text($(`#${id}`).val());
     }
 }
 
-//Receives click on Temp Button
-$(document).on("click", "#navTemp", rates.init);
-
-//Receives any changes made to an input range
-$(document).on("input", 'input[type=range]', function(){
-    formsControl.changeHeader($(this).attr("id").toString());
-});
-
-//Initializes Bootstrap Tooltips
-$(function () {$('[data-toggle="tooltip"]').tooltip()})
-
-formsControl.initHeaders();
-
-var delayTime = 400;
-
-//On navbar quote click
-$(document).on("click", "#navQuote", function(){
-    $("#navQuote").addClass("unselectable");
-    $("#quote").delay(delayTime).fadeIn(delayTime);
-    $("#navRegister").removeClass("unselectable");
-    $("#register").fadeOut(delayTime);
-});
-
-//On navbar register click
-$(document).on("click", "#navRegister", function(){
-    $("#navRegister").addClass("unselectable");
-    $("#register").delay(delayTime).fadeIn(delayTime);
-    $("#navQuote").removeClass("unselectable");
-    $("#quote").fadeOut(delayTime);
-});
-
-
-$(window).resize(function(){
-    resize();
-});
-
 $(document).ready(function(){
-    resize();
-});
+    frontControl.init();
 
-function resize(){
-    if($(window).width() < 600){
-        $(".mr-auto").insertAfter(".dropdown");
-    }
-    else {
-        $(".dropdown").insertAfter(".mr-auto");
-    }
-}
+    //On navbar quote click
+    $(document).on("click", "#navQuote", function(){
+        $("#navQuote").addClass("unselectable");
+        $("#quote").delay(frontControl.delayTime).fadeIn(frontControl.delayTime);
+        $("#navAccount").removeClass("unselectable");
+        $("#account").fadeOut(frontControl.delayTime);
+    });
+
+    //On navbar account click
+    $(document).on("click", "#navAccount", function(){
+        $("#navAccount").addClass("unselectable");
+        $("#account").delay(frontControl.delayTime).fadeIn(frontControl.delayTime);
+        $("#navQuote").removeClass("unselectable");
+        $("#quote").fadeOut(frontControl.delayTime);
+    });
+
+    //On Window resize
+    $(window).resize(function(){
+        frontControl.resizeNav();
+    });
+
+    //Receives click on Temp Button
+    $(document).on("click", "#navTemp", rates.init);
+
+    //Receives any changes made to an input range
+    $(document).on("input", 'input[type=range]', function(){
+        frontControl.changeHeader($(this).attr("id").toString());
+    });
+
+    //Initializes Bootstrap Tooltips
+    $(function () {$('[data-toggle="tooltip"]').tooltip()})
+});

@@ -23,12 +23,6 @@ var rates = {
             });
         }else{
             console.log("Already initialized");
-            console.log(`100 MXN = ${rates.toUSD(100)} USD`);
-            console.log(`100 USD = ${rates.fromUSD(100)} MXN`);
-            console.log(`100 MXN = ${rates.toEUR(100)} EUR`);
-            console.log(`100 EUR = ${rates.fromEUR(100)} MXN`);
-            console.log(`100 MXN = ${rates.toCAD(100)} CAD`);
-            console.log(`100 CAD = ${rates.fromCAD(100)} MXN`);
         }
     },
     toUSD:function(MXN){
@@ -56,6 +50,9 @@ var frontControl={
     //Time for fade in and out of content
     delayTime:400,
 
+    //Currency selected
+    selectedCurrency:"MXN",
+
     //Changes nav depending on window size
     resizeNav:function(){
         if($(window).width() < 600){
@@ -77,11 +74,36 @@ var frontControl={
 
     //Changes header of range input
     changeHeader:function(id){
-        $(`#header${id.replace('slider','')}`).text($(`#${id}`).val());
-    }
+        if(id==="sliderRate"){
+            var amount = $(`#${id}`).val().trim();
+
+            switch(this.selectedCurrency){
+                case "USD": 
+                    amount = rates.toUSD(amount);
+                    break;
+                case "CAD":
+                    amount = rates.toCAD(amount);
+                    break;
+                case "EUR":
+                    amount = rates.toEUR(amount);
+                    break;
+            }
+
+            $(`#headerRate`).text(amount);
+        }else{
+            $(`#header${id.replace('slider','')}`).text($(`#${id}`).val());
+        }
+    },
+
+    changeCurrency:function(currency){
+        $("#currency").text(currency);
+        this.selectedCurrency=currency;
+        this.changeHeader("sliderRate");
+    },
 }
 
 $(document).ready(function(){
+    rates.init();
     frontControl.init();
 
     //On navbar quote click
@@ -111,6 +133,11 @@ $(document).ready(function(){
     //Receives any changes made to an input range
     $(document).on("input", 'input[type=range]', function(){
         frontControl.changeHeader($(this).attr("id").toString());
+    });
+
+    //Receives any changes made to currency radio buttons
+    $(document).on("click", '.currencyCheck', function(){
+        frontControl.changeCurrency($(this).text().trim());
     });
 
     //Initializes Bootstrap Tooltips

@@ -100,12 +100,20 @@ var frontControl={
         this.selectedCurrency=currency;
         this.changeHeader("sliderRate");
     },
+
+    displayQuote:function(quote){
+        $("#totalQuoteMXN").text(quote);
+        $("#totalQuoteUSD").text(rates.toUSD(quote));
+        $("#totalQuoteEUR").text(rates.toEUR(quote));
+        $("#totalQuoteCAD").text(rates.toCAD(quote));
+    },
 }
 
 $(document).ready(function(){
-    rates.init();
+    //rates.init();
     frontControl.init();
-
+    frontControl.displayQuote(100);
+    
     //On navbar quote click
     $(document).on("click", "#navQuote", function(){
         $("#navQuote").addClass("unselectable");
@@ -138,6 +146,17 @@ $(document).ready(function(){
     //Receives any changes made to currency radio buttons
     $(document).on("click", '.currencyCheck', function(){
         frontControl.changeCurrency($(this).text().trim());
+    });
+
+    //Checks if any change is made to a quote radio or checkmark
+    $(document).on("change",".quoteCheck .checkContainer", function(){
+        console.log($(this).children()[0].innerHTML);
+        frontControl.displayQuote(100);
+    });
+
+    //Checks if any change is made to a quote radio or checkmark
+    $(document).on("change",".developerCheck .checkContainer", function(){
+        console.log($(this).children()[0].innerHTML);
     });
 
     //Initializes Bootstrap Tooltips

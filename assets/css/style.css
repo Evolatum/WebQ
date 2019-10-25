@@ -16,6 +16,8 @@ body{
 
 .navbar-text{
     margin: 0 10px;
+    -webkit-transition: .3s;
+    transition: color .3s;
 }
 
 .navbar-text:hover,.navbar-text:active{
@@ -227,7 +229,7 @@ h3{
     }
 
     .dropdown{
-        margin-left:100px;
+        margin-left:40%;
     }
 
     .main{
@@ -238,6 +240,12 @@ h3{
         margin:auto;
         position: relative;
         top:-15px;
+    }
+}
+
+@media (max-width: 399px){
+    .dropdown{
+        margin-left:10%;
     }
 }
 

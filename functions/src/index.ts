@@ -6,7 +6,9 @@ admin.initializeApp();
 import * as sgMail from "@sendgrid/mail";
 
 const API_KEY = functions.config().sendgrid.key;
+console.log("Key: " + API_KEY)
 const TEMPLATE_ID = functions.config().sendgrid.template;
+console.log("Temp ID: " + TEMPLATE_ID)
 sgMail.setApiKey(API_KEY);
 
 export const welcomeEmail= functions.auth.user().onCreate(user => {
@@ -14,16 +16,13 @@ export const welcomeEmail= functions.auth.user().onCreate(user => {
     const msg =  {
         to: user.email,
         from: "webqsolutionsdev@gmail.com",
-        templateId: TEMPLATE_ID,
+        templateId: "d-63ef99ca12ab4886b6b0aff5211b5d12",
         dynamic_template_data: {
             name: "name",
         },
     };
 
-    console.log("aasdf")
-    console.log(msg)
     return sgMail.send(msg);
-    
 
 });
 

@@ -13,10 +13,10 @@ export const welcomeEmail= functions.auth.user().onCreate(user => {
 
     const msg =  {
         to: user.email,
-        from: "jv346@cornell.edu",
+        from: "webqsolutionsdev@gmail.com",
         templateId: "d-63ef99ca12ab4886b6b0aff5211b5d12",
         dynamic_template_data: {
-            name: "asdf",
+            name: "name",
         },
     };
 

@@ -62,57 +62,57 @@ $(document).ready(function(){
         privacyPolicyUrl: '<your-privacy-policy-url>'
         };
 
-        $("#logoff").on("click", function(user){
-            // event.preventDefault();
-            if(user){
-                firebase.auth().signOut().then(function() {
-                // Sign-out successful.
-                }).catch(function(error) {
-                // An error happened.
-                console.log("valio Brga por: " + error);
-                });
-            }
-        });
-
-
-        // Handling whether user is logged in or not
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                $("#logoff").show();
-                dbRef.child(user.uid).once('value')
-                    .then(function(snapshot){
-                        // console.log(snapshot.val());
-                        // snapshot.forEach(element => {
-                            if(snapshot.val()){
-                                console.log("user exists");
-                                console.log(snapshot.val().displayName);
-                                console.log(snapshot.val().email);
-                            }else{
-                                console.log("adding user");
-                                insertUserData(user);
-                            }
-                    });
-            } else {
-                // No user is signed in.
-                $("#userLogged").hide();
-                ui.start('#firebase-auth-container', uiConfig);
-            }
-        });
-
-        function insertUserData(user){
-            developer.displayName = user.displayName;
-            developer.email = user.email;
-            dbRef.child(user.uid).set(developer);
-            
+    $("#logoff").on("click", function(user){
+        // event.preventDefault();
+        if(user){
+            firebase.auth().signOut().then(function() {
+            // Sign-out successful.
+            }).catch(function(error) {
+            // An error happened.
+            console.log("Error: " + error);
+            });
         }
+    });
 
-        firebase.auth().signInWithPopup(gitHubAuth).then(function(result) {
+
+    // Handling whether user is logged in or not
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            $("#logoff").show();
+            dbRef.child(user.uid).once('value')
+                .then(function(snapshot){
+                    // console.log(snapshot.val());
+                    // snapshot.forEach(element => {
+                        if(snapshot.val()){
+                            console.log("user exists");
+                            console.log(snapshot.val().displayName);
+                            console.log(snapshot.val().email);
+                        }else{
+                            console.log("adding user");
+                            insertUserData(user);
+                        }
+                });
+        } else {
+            // No user is signed in.
+            $("#userLogged").hide();
+            ui.start('#firebase-auth-container', uiConfig);
+        }
+    });
+
+    function insertUserData(user){
+        developer.displayName = user.displayName;
+        developer.email = user.email;
+        dbRef.child(user.uid).set(developer);
+        
+    }
+
+    firebase.auth().signInWithPopup(gitHubAuth).then(function(result) {
         // This gives you a GitHub Access Token. You can use it to access the GitHub API.
         var token = result.credential.accessToken;
         // The signed-in user info.
         var user = result.user;
         // ...
-        }).catch(function(error) {
+    }).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -121,5 +121,34 @@ $(document).ready(function(){
         // The firebase.auth.AuthCredential type that was used.
         var credential = error.credential;
         // ...
-        });
+    });
+
+
+    //Holds all skills initialized as false
+    var userSkills = {
+        'Angular':false,
+        'Express':false,
+        'Django':false,
+        'Flask':false,
+        'GraphQL':false,
+        'MongoDB':false,
+        'MySQL':false,
+        'Node.js':false,
+        'React':false,
+    }
+
+    //Checks if any change is made to a skill checkmark, and toggles boolean value
+    $(document).on("change",".developerCheck .checkContainer", function(){
+        userSkills[$(this).children()[0].innerHTML] = !userSkills[$(this).children()[0].innerHTML]
+    });
+    
+    //Saves changes made to user preferences
+    $(document).on("click","#saveChanges", function(){
+        var userCurrencyPreference = $("#currency").text();
+        var userRateMXN = $(`#sliderRate`).val().trim();
+
+        //Esto es lo que se guarda en database
+        console.log(userRateMXN, userSkills, userCurrencyPreference);
+    });
+        
 });

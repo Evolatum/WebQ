@@ -46,7 +46,7 @@ $(document).ready(function(){
         },
         // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
         signInFlow: 'popup',
-        signInSuccessUrl: './auth.html',
+        signInSuccessUrl: './index.html',
         signInOptions: [
             // Leave the lines as is for the providers you want to offer your users.
             // firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -94,7 +94,7 @@ $(document).ready(function(){
                     });
             } else {
                 // No user is signed in.
-                $("#logoff").hide();
+                $("#userLogged").hide();
                 ui.start('#firebase-auth-container', uiConfig);
             }
         });

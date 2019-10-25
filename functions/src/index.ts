@@ -14,7 +14,7 @@ export const welcomeEmail= functions.auth.user().onCreate(user => {
     const msg =  {
         to: user.email,
         from: "webqsolutionsdev@gmail.com",
-        templateId: "d-63ef99ca12ab4886b6b0aff5211b5d12",
+        templateId: TEMPLATE_ID,
         dynamic_template_data: {
             name: "name",
         },
@@ -31,6 +31,6 @@ export const welcomeEmail= functions.auth.user().onCreate(user => {
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript
 
-export const helloWorld = functions.https.onRequest((request, response) => {
-response.send(TEMPLATE_ID);
-});
+// export const helloWorld = functions.https.onRequest((request, response) => {
+// response.send(TEMPLATE_ID);
+// });

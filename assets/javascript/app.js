@@ -1,4 +1,4 @@
-//Object with currency exchange API and pertinent methods
+//Object with currency exchange API and methods
 var rates = {
     k:["08b755891c7a22","97700ef"],
     initialized:false,
@@ -23,12 +23,6 @@ var rates = {
             });
         }else{
             console.log("Already initialized");
-            console.log(`100 MXN = ${rates.toUSD(100)} USD`);
-            console.log(`100 USD = ${rates.fromUSD(100)} MXN`);
-            console.log(`100 MXN = ${rates.toEUR(100)} EUR`);
-            console.log(`100 EUR = ${rates.fromEUR(100)} MXN`);
-            console.log(`100 MXN = ${rates.toCAD(100)} CAD`);
-            console.log(`100 CAD = ${rates.fromCAD(100)} MXN`);
         }
     },
     toUSD:function(MXN){
@@ -51,64 +45,120 @@ var rates = {
     },
 }
 
-//Form control methods
-var formsControl={
-    initHeaders:function(){
+//Object with front-end properties and methods
+var frontControl={
+    //Time for fade in and out of content
+    delayTime:400,
+
+    //Currency selected
+    selectedCurrency:"MXN",
+
+    //Changes nav depending on window size
+    resizeNav:function(){
+        if($(window).width() < 600){
+            $(".mr-auto").insertAfter(".dropdown");
+        }
+        else {
+            $(".dropdown").insertAfter(".mr-auto");
+        }
+    },
+
+    //Initializes headers of range inputs and nav size
+    init:function(){
+        this.resizeNav();
         $(".rangeHeader").each(function(){
             var id = $(this).attr("id").replace("header","");
             $(`#header${id}`).text($(`#slider${id}`).val());
         });
     },
+
+    //Changes header of range input
     changeHeader:function(id){
-        $(`#header${id.replace('slider','')}`).text($(`#${id}`).val());
-    }
+        if(id==="sliderRate"){
+            var amount = $(`#${id}`).val().trim();
+
+            switch(this.selectedCurrency){
+                case "USD": 
+                    amount = rates.toUSD(amount);
+                    break;
+                case "CAD":
+                    amount = rates.toCAD(amount);
+                    break;
+                case "EUR":
+                    amount = rates.toEUR(amount);
+                    break;
+            }
+
+            $(`#headerRate`).text(amount);
+        }else{
+            $(`#header${id.replace('slider','')}`).text($(`#${id}`).val());
+        }
+    },
+
+    changeCurrency:function(currency){
+        $("#currency").text(currency);
+        this.selectedCurrency=currency;
+        this.changeHeader("sliderRate");
+    },
+
+    displayQuote:function(quote){
+        $("#totalQuoteMXN").text(quote);
+        $("#totalQuoteUSD").text(rates.toUSD(quote));
+        $("#totalQuoteEUR").text(rates.toEUR(quote));
+        $("#totalQuoteCAD").text(rates.toCAD(quote));
+    },
 }
-
-//Receives click on Temp Button
-$(document).on("click", "#navTemp", rates.init);
-
-//Receives any changes made to an input range
-$(document).on("input", 'input[type=range]', function(){
-    formsControl.changeHeader($(this).attr("id").toString());
-});
-
-//Initializes Bootstrap Tooltips
-$(function () {$('[data-toggle="tooltip"]').tooltip()})
-
-formsControl.initHeaders();
-
-var delayTime = 400;
-
-//On navbar quote click
-$(document).on("click", "#navQuote", function(){
-    $("#navQuote").addClass("unselectable");
-    $("#quote").delay(delayTime).fadeIn(delayTime);
-    $("#navRegister").removeClass("unselectable");
-    $("#register").fadeOut(delayTime);
-});
-
-//On navbar register click
-$(document).on("click", "#navRegister", function(){
-    $("#navRegister").addClass("unselectable");
-    $("#register").delay(delayTime).fadeIn(delayTime);
-    $("#navQuote").removeClass("unselectable");
-    $("#quote").fadeOut(delayTime);
-});
-
-
-$(window).resize(function(){
-    resize();
-});
 
 $(document).ready(function(){
-    resize();
-});
+    //rates.init();
+    frontControl.init();
+    frontControl.displayQuote(100);
+    
+    //On navbar quote click
+    $(document).on("click", "#navQuote", function(){
+        $("#navQuote").addClass("unselectable");
+        $("#quote").delay(frontControl.delayTime).fadeIn(frontControl.delayTime);
+        $("#navAccount").removeClass("unselectable");
+        $("#account").fadeOut(frontControl.delayTime);
+    });
 
-function resize(){
-    if($(window).width() < 600){
-        $(".mr-auto").insertAfter(".dropdown");
-    }
-    else {
-        $(".dropdown").insertAfter(".mr-auto");
-    }
-}
+    //On navbar account click
+    $(document).on("click", "#navAccount", function(){
+        $("#navAccount").addClass("unselectable");
+        $("#account").delay(frontControl.delayTime).fadeIn(frontControl.delayTime);
+        $("#navQuote").removeClass("unselectable");
+        $("#quote").fadeOut(frontControl.delayTime);
+    });
+
+    //On Window resize
+    $(window).resize(function(){
+        frontControl.resizeNav();
+    });
+
+    //Receives click on Temp Button
+    $(document).on("click", "#navTemp", rates.init);
+
+    //Receives any changes made to an input range
+    $(document).on("input", 'input[type=range]', function(){
+        frontControl.changeHeader($(this).attr("id").toString());
+    });
+
+    //Receives any changes made to currency radio buttons
+    $(document).on("click", '.currencyCheck', function(){
+        frontControl.changeCurrency($(this).text().trim());
+    });
+
+    //Checks if any change is made to a quote radio or checkmark
+    $(document).on("change",".quoteCheck .checkContainer", function(){
+        console.log($(this).children()[0].innerHTML);
+        frontControl.displayQuote(100);
+    });
+
+    //Checks if any change is made to a quote radio or checkmark
+    $(document).on("change",".developerCheck .checkContainer", function(){
+        console.log($(this).children()[0].innerHTML);
+    });
+
+    //Initializes Bootstrap Tooltips
+    $(function () {$('[data-toggle="tooltip"]').tooltip()})
+});

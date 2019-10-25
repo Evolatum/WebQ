@@ -16,7 +16,7 @@
         
         <div class="navbar-item mr-auto">
             <span class="navbar-text unselectable" id="navQuote">Quote</span>
-            <span class="navbar-text" id="navRegister">Register as Developer</span>
+            <span class="navbar-text" id="navAccount">Account</span>
             <span class="navbar-text" id="navTemp">Temp</span>
         </div>
 
@@ -33,43 +33,81 @@
         </div>
     </nav>
     
+    <!-- Content -->
     <div class="main container-fluid">
         <div class="jumbotron bg-dark text-light" id="quote">
             <h2>Quotes</h2>
             <div class="row">
             
-                <!-- Stack Radio -->
+                <!-- Stack Checkmark -->
                 <div class="col-xl-4 col-md-6 col-12">
                     <div class="jumboForm">
                         <h3>Stack</h3>
-                        <form class="form-row">
+                        <form class="form-row quoteCheck" id="stackRadio">
+
                             <div class="col-md-6 col-sm-4 col-12">
-                                <label class="checkContainer"><span class="checkText">React</span>
-                                    <input type="radio" name="radio">
-                                    <span class="checkRadio"></span>
+                                <label class="checkContainer"><span class="checkText">Angular</span>
+                                    <input type="checkbox">
+                                    <span class="checkMark"></span>
                                 </label>
                             </div>
                                 
                             <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer"><span class="checkText">Express</span>
+                                    <input type="checkbox">
+                                    <span class="checkMark"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer"><span class="checkText">Django</span>
+                                    <input type="checkbox">
+                                    <span class="checkMark"></span>
+                                </label>
+                            </div>
+
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer"><span class="checkText">Flask</span>
+                                    <input type="checkbox">
+                                    <span class="checkMark"></span>
+                                </label>
+                            </div>
+
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer"><span class="checkText">GraphQL</span>
+                                    <input type="checkbox">
+                                    <span class="checkMark"></span>
+                                </label>
+                            </div>
+
+                            <div class="col-md-6 col-sm-4 col-12">
                                 <label class="checkContainer"><span class="checkText">MongoDB</span>
-                                    <input type="radio" name="radio">
-                                    <span class="checkRadio"></span>
+                                    <input type="checkbox">
+                                    <span class="checkMark"></span>
+                                </label>
+                            </div>
+                                
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer"><span class="checkText">MySQL</span>
+                                    <input type="checkbox">
+                                    <span class="checkMark"></span>
                                 </label>
                             </div>
                             
                             <div class="col-md-6 col-sm-4 col-12">
                                 <label class="checkContainer"><span class="checkText">Node.js</span>
-                                    <input type="radio" name="radio">
-                                    <span class="checkRadio"></span>
+                                    <input type="checkbox">
+                                    <span class="checkMark"></span>
                                 </label>
                             </div>
 
                             <div class="col-md-6 col-sm-4 col-12">
-                                <label class="checkContainer"><span class="checkText">Temp</span>
-                                    <input type="radio" name="radio" checked="checked">
-                                    <span class="checkRadio"></span>
+                                <label class="checkContainer"><span class="checkText">React</span>
+                                    <input type="checkbox">
+                                    <span class="checkMark"></span>
                                 </label>
                             </div>
+
                         </form>
                     </div>
                 </div>
@@ -78,34 +116,63 @@
                 <div class="col-xl-4 col-md-6 col-12">
                     <div class="jumboForm">
                         <h3>Framework</h3>
-                        <form class="form-row">
-                            <div class="col-md-6 col-sm-4 col-12">
-                                <label class="checkContainer"><span class="checkText">Bootstrap</span>
-                                    <input type="radio" name="radio">
-                                    <span class="checkRadio"></span>
-                                </label>
-                            </div>
-                                
-                            <div class="col-md-6 col-sm-4 col-12">
-                                <label class="checkContainer"><span class="checkText">Materialize</span>
-                                    <input type="radio" name="radio">
-                                    <span class="checkRadio"></span>
-                                </label>
-                            </div>
-                            
-                            <div class="col-md-6 col-sm-4 col-12">
-                                <label class="checkContainer"><span class="checkText">Temp</span>
-                                    <input type="radio" name="radio">
-                                    <span class="checkRadio"></span>
-                                </label>
-                            </div>
-
+                        <form class="form-row quoteCheck" id="frameworkRadio">
                             <div class="col-md-6 col-sm-4 col-12">
                                 <label class="checkContainer"><span class="checkText">Custom</span>
                                     <input type="radio" name="radio" checked="checked">
                                     <span class="checkRadio"></span>
                                 </label>
                             </div>
+                                
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer"><span class="checkText">Bootstrap</span>
+                                    <input type="radio" name="radio">
+                                    <span class="checkRadio"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer"><span class="checkText">CSS Grid</span>
+                                    <input type="radio" name="radio">
+                                    <span class="checkRadio"></span>
+                                </label>
+                            </div>
+
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer"><span class="checkText">Materialize</span>
+                                    <input type="radio" name="radio">
+                                    <span class="checkRadio"></span>
+                                </label>
+                            </div>
+
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer"><span class="checkText">Semantic</span>
+                                    <input type="radio" name="radio">
+                                    <span class="checkRadio"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer"><span class="checkText">Shoelace</span>
+                                    <input type="radio" name="radio">
+                                    <span class="checkRadio"></span>
+                                </label>
+                            </div>
+
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer"><span class="checkText">Spectre</span>
+                                    <input type="radio" name="radio">
+                                    <span class="checkRadio"></span>
+                                </label>
+                            </div>
+
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer"><span class="checkText">Tailwind</span>
+                                    <input type="radio" name="radio">
+                                    <span class="checkRadio"></span>
+                                </label>
+                            </div>
+                            
                         </form>
                     </div>
                 </div>
@@ -140,7 +207,15 @@
                 <div class="col-xl-4 col-md-6 col-12">
                     <div class="jumboForm">
                         <h3>Additional Features</h3>
-                        <form class="form-row">
+                        <form class="form-row quoteCheck" id="additionalFeaturesCheck">
+
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer"><span class="checkText">Analytics</span>
+                                    <input type="checkbox">
+                                    <span class="checkMark"></span>
+                                </label>
+                            </div>
+
                             <div class="col-md-6 col-sm-4 col-12">
                                 <label class="checkContainer"><span class="checkText">Responsive</span>
                                     <input type="checkbox">
@@ -163,7 +238,7 @@
                             </div>
 
                             <div class="col-md-6 col-sm-4 col-12">
-                                <label class="checkContainer"><span class="checkText">Temp</span>
+                                <label class="checkContainer"><span class="checkText">Mailing List</span>
                                     <input type="checkbox">
                                     <span class="checkMark"></span>
                                 </label>
@@ -173,17 +248,67 @@
                     </div>
                 </div>
 
+                <!-- Total Quote -->
+                <div class="col-xl-4 col-md-6 col-12">
+                    <div class="jumboForm">
+                        <h3>Quote</h3>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12 col-12">
+                                <span id="totalQuoteMXN"></span> MXN
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-12">
+                                <span id="totalQuoteUSD"></span> USD
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-12">
+                                <span id="totalQuoteEUR"></span> EUR
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-12">
+                                <span id="totalQuoteCAD"></span> CAD
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
-        <div class="jumbotron bg-dark text-light" id="register" style="display: none;">
+        <div class="jumbotron bg-dark text-light" id="account" style="display: none;">
             <h2>Register as Developer</h2>
             <div class="row">
 
-                <!-- Rate Slider -->
-                <div class="col-xl-4 col-md-6 col-12">
+                <!-- Rate Radio Buttons & Slider -->
+                <div class="col-lg-4 col-12">
                     <div class="jumboForm">
-                        <h3>Hourly Rate: <span class="rangeHeader" id="headerRate"></span> MXN</h3>
+                        <h3>Hourly Rate: <span class="rangeHeader" id="headerRate"></span> <span id="currency">MXN</span></h3>
+                        <form class="form-row">
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer currencyCheck"><span class="checkText">MXN</span>
+                                    <input type="radio" name="radio" checked="checked">
+                                    <span class="checkRadio"></span>
+                                </label>
+                            </div>
+                                
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer currencyCheck"><span class="checkText">USD</span>
+                                    <input type="radio" name="radio">
+                                    <span class="checkRadio"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer currencyCheck"><span class="checkText">EUR</span>
+                                    <input type="radio" name="radio">
+                                    <span class="checkRadio"></span>
+                                </label>
+                            </div>
+
+                            <div class="col-md-6 col-sm-4 col-12">
+                                <label class="checkContainer currencyCheck"><span class="checkText">CAD</span>
+                                    <input type="radio" name="radio">
+                                    <span class="checkRadio"></span>
+                                </label>
+                            </div>
+                        </form>
                         <div class="form-row">
                             <div class="sliderContainer">
                                 <input type="range" min="350" max="1000" value="500" step="50" class="slider" id="sliderRate">
@@ -191,85 +316,80 @@
                         </div>
                     </div>
                 </div>
+                
 
                 <!-- Skills Checkmark -->
-                <div class="col-xl-4 col-md-6 col-12">
-                    <div class="jumboForm">
-                        <h3>Skills</h3>
-                        <form class="form-row">
-                            <div class="col-md-6 col-sm-4 col-12">
-                                <label class="checkContainer"><span class="checkText">React</span>
-                                    <input type="checkbox">
-                                    <span class="checkMark"></span>
-                                </label>
-                            </div>
+                <div class="col-lg-8 col-12">
+                        <div class="jumboForm">
+                            <h3>Skills</h3>
+                            <form class="form-row developerCheck">
+    
+                                <div class="col-md-6 col-sm-4 col-12">
+                                    <label class="checkContainer"><span class="checkText">Angular</span>
+                                        <input type="checkbox">
+                                        <span class="checkMark"></span>
+                                    </label>
+                                </div>
+                                    
+                                <div class="col-md-6 col-sm-4 col-12">
+                                    <label class="checkContainer"><span class="checkText">Express</span>
+                                        <input type="checkbox">
+                                        <span class="checkMark"></span>
+                                    </label>
+                                </div>
                                 
-                            <div class="col-md-6 col-sm-4 col-12">
-                                <label class="checkContainer"><span class="checkText">MongoDB</span>
-                                    <input type="checkbox">
-                                    <span class="checkMark"></span>
-                                </label>
-                            </div>
-                            
-                            <div class="col-md-6 col-sm-4 col-12">
-                                <label class="checkContainer"><span class="checkText">Node.js</span>
-                                    <input type="checkbox">
-                                    <span class="checkMark"></span>
-                                </label>
-                            </div>
-
-                            <div class="col-md-6 col-sm-4 col-12">
-                                <label class="checkContainer"><span class="checkText">Bootstrap</span>
-                                    <input type="checkbox">
-                                    <span class="checkMark"></span>
-                                </label>
-                            </div>
-
-                            <div class="col-md-6 col-sm-4 col-12">
-                                <label class="checkContainer"><span class="checkText">Materialize</span>
-                                    <input type="checkbox">
-                                    <span class="checkMark"></span>
-                                </label>
-                            </div>
-
-                            <div class="col-md-6 col-sm-4 col-12">
-                                <label class="checkContainer"><span class="checkText">Other Frameworks</span>
-                                    <input type="checkbox">
-                                    <span class="checkMark"></span>
-                                </label>
-                            </div>
-
-                            <div class="col-md-6 col-sm-4 col-12">
-                                <label class="checkContainer"><span class="checkText">Custom HTML/CSS</span>
-                                    <input type="checkbox">
-                                    <span class="checkMark"></span>
-                                </label>
-                            </div>
-
-                            <div class="col-md-6 col-sm-4 col-12">
-                                <label class="checkContainer"><span class="checkText">Responsiveness</span>
-                                    <input type="checkbox">
-                                    <span class="checkMark"></span>
-                                </label>
-                            </div>
-
-                            <div class="col-md-6 col-sm-4 col-12">
-                                <label class="checkContainer"><span class="checkText">SEO</span>
-                                    <input type="checkbox">
-                                    <span class="checkMark"></span>
-                                </label>
-                            </div>
-
-                            <div class="col-md-6 col-sm-4 col-12">
-                                <label class="checkContainer"><span class="checkText">E-Commerce</span>
-                                    <input type="checkbox">
-                                    <span class="checkMark"></span>
-                                </label>
-                            </div>
-
-                        </form>
+                                <div class="col-md-6 col-sm-4 col-12">
+                                    <label class="checkContainer"><span class="checkText">Django</span>
+                                        <input type="checkbox">
+                                        <span class="checkMark"></span>
+                                    </label>
+                                </div>
+    
+                                <div class="col-md-6 col-sm-4 col-12">
+                                    <label class="checkContainer"><span class="checkText">Flask</span>
+                                        <input type="checkbox">
+                                        <span class="checkMark"></span>
+                                    </label>
+                                </div>
+    
+                                <div class="col-md-6 col-sm-4 col-12">
+                                    <label class="checkContainer"><span class="checkText">GraphQL</span>
+                                        <input type="checkbox">
+                                        <span class="checkMark"></span>
+                                    </label>
+                                </div>
+    
+                                <div class="col-md-6 col-sm-4 col-12">
+                                    <label class="checkContainer"><span class="checkText">MongoDB</span>
+                                        <input type="checkbox">
+                                        <span class="checkMark"></span>
+                                    </label>
+                                </div>
+                                    
+                                <div class="col-md-6 col-sm-4 col-12">
+                                    <label class="checkContainer"><span class="checkText">MySQL</span>
+                                        <input type="checkbox">
+                                        <span class="checkMark"></span>
+                                    </label>
+                                </div>
+                                
+                                <div class="col-md-6 col-sm-4 col-12">
+                                    <label class="checkContainer"><span class="checkText">Node.js</span>
+                                        <input type="checkbox">
+                                        <span class="checkMark"></span>
+                                    </label>
+                                </div>
+    
+                                <div class="col-md-6 col-sm-4 col-12">
+                                    <label class="checkContainer"><span class="checkText">React</span>
+                                        <input type="checkbox">
+                                        <span class="checkMark"></span>
+                                    </label>
+                                </div>
+    
+                            </form>
+                        </div>
                     </div>
-                </div>
 
             </div>
         </div>

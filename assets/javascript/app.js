@@ -135,9 +135,6 @@ $(document).ready(function(){
         frontControl.resizeNav();
     });
 
-    //Receives click on Temp Button
-    $(document).on("click", "#navTemp", rates.init);
-
     //Receives any changes made to an input range
     $(document).on("input", 'input[type=range]', function(){
         frontControl.changeHeader($(this).attr("id").toString());

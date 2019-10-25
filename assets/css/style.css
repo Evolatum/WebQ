@@ -16,6 +16,8 @@ body{
 
 .navbar-text{
     margin: 0 10px;
+    -webkit-transition: .3s;
+    transition: color .3s;
 }
 
 .navbar-text:hover,.navbar-text:active{

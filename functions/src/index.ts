@@ -6,25 +6,45 @@ admin.initializeApp();
 import * as sgMail from "@sendgrid/mail";
 
 const API_KEY = functions.config().sendgrid.key;
-console.log("Key: " + API_KEY)
 const TEMPLATE_ID = functions.config().sendgrid.template;
-console.log("Temp ID: " + TEMPLATE_ID)
 sgMail.setApiKey(API_KEY);
 
-export const welcomeEmail= functions.auth.user().onCreate(user => {
+export const welcomeEmail = functions.auth.user().onCreate(user => {
 
     const msg =  {
         to: user.email,
         from: "webqsolutionsdev@gmail.com",
-        templateId: "d-63ef99ca12ab4886b6b0aff5211b5d12",
+        templateId: TEMPLATE_ID,
         dynamic_template_data: {
-            name: "name",
+            name: user.displayName
+        },
+    };
+    console.log("Email: " + user.email)
+    console.log("Name: " + user.displayName)
+    console.log("Full: " + JSON.stringify(user))
+
+    return sgMail.send(msg);
+
+});
+
+//functions.auth.user().onProfileUpdated fix to update instead of only on create
+
+export const sendByeEmail = functions.auth.user().onDelete((user) => {
+    const msg =  {
+        to: user.email,
+        from: "webqsolutionsdev@gmail.com",
+        templateId: "d-d482ec3ba3d843ab8ee49ce975b9ca02",
+        dynamic_template_data: {
+            name: user.displayName
         },
     };
 
     return sgMail.send(msg);
 
 });
+
+
+
 
 
 // Start writing Firebase Functions

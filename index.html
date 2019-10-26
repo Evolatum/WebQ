@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/86912c1614.js" crossorigin="anonymous"></script>
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
 </head>
 
 <body>
@@ -17,7 +18,6 @@
         <div class="navbar-item mr-auto">
             <span class="navbar-text unselectable" id="navQuote">Quote</span>
             <span class="navbar-text" id="navAccount">Account</span>
-            <span class="navbar-text" id="navTemp">Temp</span>
         </div>
 
         <div class="navbar-item dropdown">
@@ -273,99 +273,114 @@
         </div>
 
         <div class="jumbotron bg-dark text-light" id="account" style="display: none;">
-            <h2>Register as Developer</h2>
+            <h2>Developer Account</h2>
             <div class="row">
 
-                <!-- Rate Radio Buttons & Slider -->
-                <div class="col-lg-4 col-12">
-                    <div class="jumboForm">
-                        <h3>Hourly Rate: <span class="rangeHeader" id="headerRate"></span> <span id="currency">MXN</span></h3>
-                        <form class="form-row">
-                            <div class="col-md-6 col-sm-4 col-12">
-                                <label class="checkContainer currencyCheck"><span class="checkText">MXN</span>
-                                    <input type="radio" name="radio" checked="checked">
-                                    <span class="checkRadio"></span>
-                                </label>
-                            </div>
-                                
-                            <div class="col-md-6 col-sm-4 col-12">
-                                <label class="checkContainer currencyCheck"><span class="checkText">USD</span>
-                                    <input type="radio" name="radio">
-                                    <span class="checkRadio"></span>
-                                </label>
-                            </div>
-                            
-                            <div class="col-md-6 col-sm-4 col-12">
-                                <label class="checkContainer currencyCheck"><span class="checkText">EUR</span>
-                                    <input type="radio" name="radio">
-                                    <span class="checkRadio"></span>
-                                </label>
-                            </div>
+                <!-- Firebase Login -->
+                <div id="firebase-auth-container"></div>
+                
+                <!-- If user logged-->
+                <div class="col" id="userLogged">
+                    <div class="row">
+                
+                        <!-- Rate Radio Buttons & Slider -->
+                        <div class="col-lg-4 col-12">
+                            <div class="jumboForm">
+                                <h3>Hourly Rate: <span class="rangeHeader" id="headerRate"></span> <span id="currency">MXN</span></h3>
+                                <form class="form-row">
+                                    <div class="col-md-6 col-sm-4 col-12">
+                                        <label class="checkContainer currencyCheck"><span class="checkText">MXN</span>
+                                            <input type="radio" name="radio" checked="checked">
+                                            <span class="checkRadio"></span>
+                                        </label>
+                                    </div>
+                                        
+                                    <div class="col-md-6 col-sm-4 col-12">
+                                        <label class="checkContainer currencyCheck"><span class="checkText">USD</span>
+                                            <input type="radio" name="radio">
+                                            <span class="checkRadio"></span>
+                                        </label>
+                                    </div>
+                                    
+                                    <div class="col-md-6 col-sm-4 col-12">
+                                        <label class="checkContainer currencyCheck"><span class="checkText">EUR</span>
+                                            <input type="radio" name="radio">
+                                            <span class="checkRadio"></span>
+                                        </label>
+                                    </div>
 
-                            <div class="col-md-6 col-sm-4 col-12">
-                                <label class="checkContainer currencyCheck"><span class="checkText">CAD</span>
-                                    <input type="radio" name="radio">
-                                    <span class="checkRadio"></span>
-                                </label>
-                            </div>
-                        </form>
-                        <div class="form-row">
-                            <div class="sliderContainer">
-                                <input type="range" min="350" max="1000" value="500" step="50" class="slider" id="sliderRate">
+                                    <div class="col-md-6 col-sm-4 col-12">
+                                        <label class="checkContainer currencyCheck"><span class="checkText">CAD</span>
+                                            <input type="radio" name="radio">
+                                            <span class="checkRadio"></span>
+                                        </label>
+                                    </div>
+                                </form>
+                                <div class="form-row">
+                                    <div class="sliderContainer">
+                                        <input type="range" min="350" max="1000" value="500" step="50" class="slider" id="sliderRate">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                
+                        
 
-                <!-- Skills Checkmark -->
-                <div class="col-lg-8 col-12">
-                        <div class="jumboForm">
-                            <h3>Skills</h3>
-                            <form class="form-row developerCheck">
-    
-                                <div class="col-md-6 col-sm-4 col-12">
-                                    <label class="checkContainer"><span class="checkText">Angular</span>
-                                        <input type="checkbox">
-                                        <span class="checkMark"></span>
-                                    </label>
-                                </div>
+                        <!-- Skills Checkmark -->
+                        <div class="col-lg-8 col-12">
+                            <div class="jumboForm">
+                                <h3>Skills</h3>
+                                <form class="form-row developerCheck">
+
+                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-4 col-12">
+                                        <label class="checkContainer"><span class="checkText">Angular</span>
+                                            <input type="checkbox">
+                                            <span class="checkMark"></span>
+                                        </label>
+                                    </div>
+                                        
+                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-4 col-12">
+                                        <label class="checkContainer"><span class="checkText">Express</span>
+                                            <input type="checkbox">
+                                            <span class="checkMark"></span>
+                                        </label>
+                                    </div>
                                     
-                                <div class="col-md-6 col-sm-4 col-12">
-                                    <label class="checkContainer"><span class="checkText">Express</span>
-                                        <input type="checkbox">
-                                        <span class="checkMark"></span>
-                                    </label>
-                                </div>
-                                
-                                <div class="col-md-6 col-sm-4 col-12">
-                                    <label class="checkContainer"><span class="checkText">Django</span>
-                                        <input type="checkbox">
-                                        <span class="checkMark"></span>
-                                    </label>
-                                </div>
-    
-                                <div class="col-md-6 col-sm-4 col-12">
-                                    <label class="checkContainer"><span class="checkText">Flask</span>
-                                        <input type="checkbox">
-                                        <span class="checkMark"></span>
-                                    </label>
-                                </div>
-    
-                                <div class="col-md-6 col-sm-4 col-12">
-                                    <label class="checkContainer"><span class="checkText">GraphQL</span>
-                                        <input type="checkbox">
-                                        <span class="checkMark"></span>
-                                    </label>
-                                </div>
-    
-                                <div class="col-md-6 col-sm-4 col-12">
-                                    <label class="checkContainer"><span class="checkText">MongoDB</span>
-                                        <input type="checkbox">
-                                        <span class="checkMark"></span>
-                                    </label>
-                                </div>
+                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-4 col-12">
+                                        <label class="checkContainer"><span class="checkText">Django</span>
+                                            <input type="checkbox">
+                                            <span class="checkMark"></span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-4 col-12">
+                                        <label class="checkContainer"><span class="checkText">Flask</span>
+                                            <input type="checkbox">
+                                            <span class="checkMark"></span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-4 col-12">
+                                        <label class="checkContainer"><span class="checkText">GraphQL</span>
+                                            <input type="checkbox">
+                                            <span class="checkMark"></span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-4 col-12">
+                                        <label class="checkContainer"><span class="checkText">MongoDB</span>
+                                            <input type="checkbox">
+                                            <span class="checkMark"></span>
+                                        </label>
+                                    </div>
+                                        
+                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-4 col-12">
+                                        <label class="checkContainer"><span class="checkText">MySQL</span>
+                                            <input type="checkbox">
+                                            <span class="checkMark"></span>
+                                        </label>
+                                    </div>
                                     
+<<<<<<< HEAD
                                 <div class="col-md-6 col-sm-4 col-12">
                                     <label class="checkContainer"><span class="checkText">MySQL</span>
                                         <input type="checkbox">
@@ -387,9 +402,36 @@
                                     </label>
                                 </div>
                             </form>
+=======
+                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-4 col-12">
+                                        <label class="checkContainer"><span class="checkText">Node.js</span>
+                                            <input type="checkbox">
+                                            <span class="checkMark"></span>
+                                        </label>
+                                    </div>
+
+                                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-4 col-12">
+                                        <label class="checkContainer"><span class="checkText">React</span>
+                                            <input type="checkbox">
+                                            <span class="checkMark"></span>
+                                        </label>
+                                    </div>
+
+                                </form>
+                            </div>
+>>>>>>> ce1ada8f39f10ca3a3cc45ee7e043a2b333ef47f
                         </div>
                     </div>
 
+                    <!-- Logoff Button-->
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-outline-info" id="saveChanges">Save Changes</button>
+                            <button type="submit" class="btn btn-outline-info" id="logoff">Logoff</button>
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
         </div>
     </div>
@@ -397,15 +439,23 @@
 
     <!-- Javascript links -->
     <div>
-        <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        
+        <!-- Firebase files -->
+        <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-analytics.js"></script>
+        <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+        
+        <!-- App JS files-->
+        <script src="assets/javascript/auth.js"></script>
         <script src="assets/javascript/app.js"></script>
         <script src="script.js"></script>
     </div>
-
 </body>
 </html>

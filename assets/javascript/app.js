@@ -135,9 +135,6 @@ $(document).ready(function(){
         frontControl.resizeNav();
     });
 
-    //Receives click on Temp Button
-    $(document).on("click", "#navTemp", rates.init);
-
     //Receives any changes made to an input range
     $(document).on("input", 'input[type=range]', function(){
         frontControl.changeHeader($(this).attr("id").toString());
@@ -148,7 +145,15 @@ $(document).ready(function(){
         frontControl.changeCurrency($(this).text().trim());
     });
 
+<<<<<<< HEAD
  
+=======
+    //Checks if any change is made to a quote radio or checkmark
+    $(document).on("change",".quoteCheck .checkContainer", function(){
+        console.log($(this).children()[0].innerHTML);
+        frontControl.displayQuote(100);
+    });
+>>>>>>> ce1ada8f39f10ca3a3cc45ee7e043a2b333ef47f
 
     //Initializes Bootstrap Tooltips
     $(function () {$('[data-toggle="tooltip"]').tooltip()})

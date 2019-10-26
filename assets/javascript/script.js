@@ -34,8 +34,8 @@ function getStandardQuotation(pages, hasSeo, isResponsive, hasEcommerce, extraFe
     }
 }
 
-let quotation = getStandardQuotation(5, false, false, false, [], 250);
-
+let quotation = getStandardQuotation(5, false, false, false, [], 500);
+frontControl.displayQuote(quotation.price);
 
 
 function adjustQuotaion(quotation, custom_deadline) {
@@ -76,10 +76,6 @@ function adjustQuotaion(quotation, custom_deadline) {
     setValues()
     quotation = getStandardQuotation(pages, hasSeo, isResponsive, hasEcommerce, extraFeatures, 500)
     frontControl.displayQuote(quotation.price);
-});
-//Checks if any change is made to a quote radio or checkmark
-$(document).on("change",".developerCheck .checkContainer", function(){
-    // console.log($(this).children()[0].innerHTML);
 });
 
 $(document).on('change', '#sliderPages', function() {

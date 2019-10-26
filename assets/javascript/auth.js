@@ -3,16 +3,28 @@ $(document).ready(function(){
     var firebaseKey0 = 'AIzaSyDV2j';
     var firebaseKey1 = 'Ss1bJRIJLygAN';
     var firebaseKey2 = 'SbPVqFILaUL6CHgs';
+    // var firebaseConfig = {
+    //     apiKey: firebaseKey0+firebaseKey1+firebaseKey2,
+    //     authDomain: "webq-d2f02.firebaseapp.com",
+    //     databaseURL: "https://webq-d2f02.firebaseio.com",
+    //     projectId: "webq-d2f02",
+    //     storageBucket: "webq-d2f02.appspot.com",
+    //     messagingSenderId: "165215674699",
+    //     appId: "1:165215674699:web:ef997945ed83af9c97c8ce",
+    //     measurementId: "G-TBK5ELGWZC"
+    // };
+    // Reference to Joaquin's Firebase
     var firebaseConfig = {
-        apiKey: firebaseKey0+firebaseKey1+firebaseKey2,
-        authDomain: "webq-d2f02.firebaseapp.com",
-        databaseURL: "https://webq-d2f02.firebaseio.com",
-        projectId: "webq-d2f02",
-        storageBucket: "webq-d2f02.appspot.com",
-        messagingSenderId: "165215674699",
-        appId: "1:165215674699:web:ef997945ed83af9c97c8ce",
-        measurementId: "G-TBK5ELGWZC"
-    };
+        apiKey: 'AIzaSyAV0ZNNwoumTV_zFiKnNDTImLDgziMu5ow',
+        authDomain: 'email-cloud-functions.firebaseapp.com',
+        databaseURL: "https://email-cloud-functions.firebaseio.com",
+        projectId: "email-cloud-functions",
+        storageBucket: "email-cloud-functions.appspot.com",
+        messagingSenderId: "328211862949",
+        appId: "1:328211862949:web:e57d91ff8473b9cebec44c",
+        measurementId: "G-DSS25211TE"
+      };
+
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
@@ -81,15 +93,13 @@ $(document).ready(function(){
             $("#logoff").show();
             dbRef.child(user.uid).once('value')
                 .then(function(snapshot){
-                    // console.log(snapshot.val());
-                    // snapshot.forEach(element => {
                         if(snapshot.val()){
                             console.log("user exists");
-                            console.log(snapshot.val().displayName);
-                            console.log(snapshot.val().email);
+                            localStorage.setItem("uid",user.uid);
                         }else{
                             console.log("adding user");
                             insertUserData(user);
+                            localStorage.setItem("uid",user.uid);
                         }
                 });
         } else {
@@ -99,11 +109,38 @@ $(document).ready(function(){
         }
     });
 
+
+    // Function to insert data for the first time
     function insertUserData(user){
+        var user = firebase.auth().currentUser;
         developer.displayName = user.displayName;
         developer.email = user.email;
+        console.log(user.displayName);
+        user.updateProfile({displayName : developer.displayName})
+            .then(function(){
+                console.log(user.displayName);
+            }).catch(function(error){
+                console.log("valio verga");
+            });
+
         dbRef.child(user.uid).set(developer);
-        
+    }
+
+    // Function to insert data skills
+    function saveChanges(user, userRateMXN, userSkills, userCurrencyPreference){
+        firebase.database().ref('developer/' + user.uid).set({
+            'displayName' : user.displayName,
+            'email' : user.email,
+            'userRateMXN' : userRateMXN,
+            // 'userSkills' : {userSkills},
+            'userCurrencyPreference' : userCurrencyPreference
+          }, function(error) {
+            if (error) {
+            //   console.log("algo fallo");
+            } else {
+            //   console.log("yeiiii");
+            }
+          });
     }
 
     firebase.auth().signInWithPopup(gitHubAuth).then(function(result) {
@@ -144,11 +181,19 @@ $(document).ready(function(){
     
     //Saves changes made to user preferences
     $(document).on("click","#saveChanges", function(){
+        var user = firebase.auth().currentUser;
         var userCurrencyPreference = $("#currency").text();
         var userRateMXN = $(`#sliderRate`).val().trim();
 
         //Esto es lo que se guarda en database
         console.log(userRateMXN, userSkills, userCurrencyPreference);
+        console.log(user);
+        if (user) {
+            // dbRef.child(user.uid).once('value')
+            //     .then(function(snapshot){
+                   saveChanges(user,userRateMXN, userSkills, userCurrencyPreference);
+            // });
+        }
     });
         
 });

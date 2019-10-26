@@ -4,8 +4,8 @@ var rates = {
     initialized:false,
     decimalCount:100,
     mxnToUsd:0.05228100108169591,
-    mxnToEur:0.04684694307300018,
     mxnToCad:0.06861259498803295,
+    mxnToEur:0.04684694307300018,
     init:function(){
         if(!rates.initialized){
             $.ajax({
@@ -95,12 +95,21 @@ var frontControl={
         }
     },
 
+    //Changes developer modal text and displays it
+    showModal:function(name,text){
+        $("#developerModalName").text(name);
+        $("#developerModalText").text(text);
+        $('#developerModal').modal('show');
+    },
+
+    //Changes currency in developer slider
     changeCurrency:function(currency){
         $("#currency").text(currency);
         this.selectedCurrency=currency;
         this.changeHeader("sliderRate");
     },
 
+    //Displays quote in each rate
     displayQuote:function(quote){
         $("#totalQuoteMXN").text(quote);
         $("#totalQuoteUSD").text(rates.toUSD(quote));
@@ -112,7 +121,10 @@ var frontControl={
 $(document).ready(function(){
     //rates.init();
     frontControl.init();
+<<<<<<< HEAD
     // frontControl.displayQuote(100);
+=======
+>>>>>>> ddf6e2f805db58e5c4da9a49d57b72a5f5bdb873
     
     //On navbar quote click
     $(document).on("click", "#navQuote", function(){
@@ -144,8 +156,6 @@ $(document).ready(function(){
     $(document).on("click", '.currencyCheck', function(){
         frontControl.changeCurrency($(this).text().trim());
     });
-
- 
 
     //Initializes Bootstrap Tooltips
     $(function () {$('[data-toggle="tooltip"]').tooltip()})

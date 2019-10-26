@@ -24,6 +24,7 @@ function getStandardQuotation(pages, hasSeo, isResponsive, hasEcommerce, extraFe
         hours += 8 * extraFeatures.length
     }
     $('#sliderDeadline').val(Math.ceil(hours/40)*7)
+    frontControl.changeHeader('sliderDeadline');
     return {
         price : hours * hourlyRate,
         original_price : hours * hourlyRate,

@@ -121,10 +121,6 @@ var frontControl={
 $(document).ready(function(){
     //rates.init();
     frontControl.init();
-<<<<<<< HEAD
-    // frontControl.displayQuote(100);
-=======
->>>>>>> ddf6e2f805db58e5c4da9a49d57b72a5f5bdb873
     
     //On navbar quote click
     $(document).on("click", "#navQuote", function(){

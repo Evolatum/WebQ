@@ -254,16 +254,16 @@
                         <h3>Quote</h3>
                         <div class="row">
                             <div class="col-md-6 col-sm-12 col-12">
-                                <span id="totalQuoteMXN"></span> MXN
+                                <span class="quoteText" id="totalQuoteMXN"></span> MXN
                             </div>
                             <div class="col-md-6 col-sm-12 col-12">
-                                <span id="totalQuoteUSD"></span> USD
+                                <span class="quoteText" id="totalQuoteUSD"></span> USD
                             </div>
                             <div class="col-md-6 col-sm-12 col-12">
-                                <span id="totalQuoteEUR"></span> EUR
+                                <span class="quoteText" id="totalQuoteEUR"></span> EUR
                             </div>
                             <div class="col-md-6 col-sm-12 col-12">
-                                <span id="totalQuoteCAD"></span> CAD
+                                <span class="quoteText" id="totalQuoteCAD"></span> CAD
                             </div>
                         </div>
                     </div>
@@ -380,29 +380,6 @@
                                         </label>
                                     </div>
                                     
-<<<<<<< HEAD
-                                <div class="col-md-6 col-sm-4 col-12">
-                                    <label class="checkContainer"><span class="checkText">MySQL</span>
-                                        <input type="checkbox">
-                                        <span class="checkMark"></span>
-                                    </label>
-                                </div>
-                                
-                                <div class="col-md-6 col-sm-4 col-12">
-                                    <label class="checkContainer"><span class="checkText">Node.js</span>
-                                        <input type="checkbox">
-                                        <span class="checkMark"></span>
-                                    </label>
-                                </div>
-    
-                                <div class="col-md-6 col-sm-4 col-12">
-                                    <label class="checkContainer"><span class="checkText">React</span>
-                                        <input type="checkbox">
-                                        <span class="checkMark"></span>
-                                    </label>
-                                </div>
-                            </form>
-=======
                                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-4 col-12">
                                         <label class="checkContainer"><span class="checkText">Node.js</span>
                                             <input type="checkbox">
@@ -419,7 +396,6 @@
 
                                 </form>
                             </div>
->>>>>>> ce1ada8f39f10ca3a3cc45ee7e043a2b333ef47f
                         </div>
                     </div>
 
@@ -436,6 +412,26 @@
         </div>
     </div>
     
+    <!-- Developer Modal-->
+    <div class="modal text-light" id="developerModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="developerModalName">Developer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="text-light">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="developerModalText"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-info" data-dismiss="modal" id="sendEmailButton">Send E-mail</button>
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Javascript links -->
     <div>
@@ -455,7 +451,7 @@
         <!-- App JS files-->
         <script src="assets/javascript/auth.js"></script>
         <script src="assets/javascript/app.js"></script>
-        <script src="script.js"></script>
+        <script src="assets/javascript/script.js"></script>
     </div>
 </body>
 </html>

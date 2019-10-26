@@ -95,12 +95,21 @@ var frontControl={
         }
     },
 
+    //Changes developer modal text and displays it
+    showModal:function(name,text){
+        $("#developerModalName").text(name);
+        $("#developerModalText").text(text);
+        $('#developerModal').modal('show');
+    },
+
+    //Changes currency in developer slider
     changeCurrency:function(currency){
         $("#currency").text(currency);
         this.selectedCurrency=currency;
         this.changeHeader("sliderRate");
     },
 
+    //Displays quote in each rate
     displayQuote:function(quote){
         $("#totalQuoteMXN").text(quote);
         $("#totalQuoteUSD").text(rates.toUSD(quote));
@@ -112,7 +121,6 @@ var frontControl={
 $(document).ready(function(){
     //rates.init();
     frontControl.init();
-    frontControl.displayQuote(100);
     
     //On navbar quote click
     $(document).on("click", "#navQuote", function(){
@@ -144,16 +152,6 @@ $(document).ready(function(){
     $(document).on("click", '.currencyCheck', function(){
         frontControl.changeCurrency($(this).text().trim());
     });
-
-<<<<<<< HEAD
- 
-=======
-    //Checks if any change is made to a quote radio or checkmark
-    $(document).on("change",".quoteCheck .checkContainer", function(){
-        console.log($(this).children()[0].innerHTML);
-        frontControl.displayQuote(100);
-    });
->>>>>>> ce1ada8f39f10ca3a3cc45ee7e043a2b333ef47f
 
     //Initializes Bootstrap Tooltips
     $(function () {$('[data-toggle="tooltip"]').tooltip()})

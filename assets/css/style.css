@@ -227,6 +227,34 @@ h3{
     margin-right: 5px;
 }
 
+.developerLink{
+    font-size:20px;
+    -webkit-transition: .3s;
+    transition: color .3s;
+}
+
+.developerLink:hover, .developerLink:active{
+    color: #5ef4ff;
+    cursor: pointer;
+}
+
+.form-text{
+    -webkit-appearance: none;
+    appearance: none;
+    margin-left:8px;
+    padding: 3px 1px 3px 6px;
+    outline: none;
+    background: transparent;
+    border: 1px solid #17a2b8;
+    -webkit-transition: .3s;
+    transition: border .3s;
+    color:#5ef4ff;
+}
+
+.form-text:hover,.form-text:active, .form-text:focus{
+    border-color: #5ef4ff;
+}
+
 @media (max-width: 599px){
     .navbar{
         padding: 0 1rem;

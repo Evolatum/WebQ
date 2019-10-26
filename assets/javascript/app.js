@@ -148,17 +148,9 @@ $(document).ready(function(){
         frontControl.changeCurrency($(this).text().trim());
     });
 
-    //Checks if any change is made to a quote radio or checkmark
-    $(document).on("change",".quoteCheck .checkContainer", function(){
-        console.log($(this).children()[0].innerHTML);
-        frontControl.displayQuote(100);
-    });
-
-    //Checks if any change is made to a quote radio or checkmark
-    $(document).on("change",".developerCheck .checkContainer", function(){
-        console.log($(this).children()[0].innerHTML);
-    });
+ 
 
     //Initializes Bootstrap Tooltips
     $(function () {$('[data-toggle="tooltip"]').tooltip()})
 });
+

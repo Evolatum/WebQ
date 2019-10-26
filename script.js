@@ -42,9 +42,6 @@ function adjustQuotaion(quotation, custom_deadline) {
     quotation.price = quotation.original_price + ((quotation.hours - custom_deadline) * quotation.hourlyRate);
 }
 
-
-
-
    $(document).on("change",".quoteCheck .checkContainer", function(){
     let developerStacks = [
         'Angular', 'Django', 'GraphQL', 'MySQL', 'React', 'Express', 'Flask',

@@ -112,7 +112,7 @@ var frontControl={
 $(document).ready(function(){
     //rates.init();
     frontControl.init();
-    frontControl.displayQuote(100);
+    // frontControl.displayQuote(100);
     
     //On navbar quote click
     $(document).on("click", "#navQuote", function(){
@@ -145,15 +145,7 @@ $(document).ready(function(){
         frontControl.changeCurrency($(this).text().trim());
     });
 
-<<<<<<< HEAD
  
-=======
-    //Checks if any change is made to a quote radio or checkmark
-    $(document).on("change",".quoteCheck .checkContainer", function(){
-        console.log($(this).children()[0].innerHTML);
-        frontControl.displayQuote(100);
-    });
->>>>>>> ce1ada8f39f10ca3a3cc45ee7e043a2b333ef47f
 
     //Initializes Bootstrap Tooltips
     $(function () {$('[data-toggle="tooltip"]').tooltip()})

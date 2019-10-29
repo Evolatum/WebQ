@@ -43,7 +43,7 @@ function adjustQuotaion(quotation, custom_deadline) {
         quotation.price = quotation.original_price + ((quotation.hours - custom_deadline) * quotation.hourlyRate);
     }
     else {
-        quotation.price = quotation.original_price + ((quotation.hours - custom_deadline) * quotation.hourlyRate) / 100;
+        quotation.price = quotation.original_price + ((quotation.hours - custom_deadline) * quotation.hourlyRate) / 50;
     }
 }
 

@@ -15,9 +15,9 @@ export const welcomeEmail = functions.auth.user().onCreate(user => {
         to: user.email,
         from: "webqsolutionsdev@gmail.com",
         templateId: TEMPLATE_ID,
-        dynamic_template_data: {
-            name: user.displayName
-        },
+        // dynamic_template_data: {
+        //     name: user.displayName
+        // },
     };
     console.log("Email: " + user.email)
     console.log("Name: " + user.displayName)
@@ -26,6 +26,17 @@ export const welcomeEmail = functions.auth.user().onCreate(user => {
     return sgMail.send(msg);
 
 });
+
+export const updateUser = functions.database.ref("/developer/{developerID}").onCreate((snapshot, context) => {
+    const developerID = context.params.developerID
+    console.log(developerID)
+
+    const data = snapshot.val
+    console.log(data)
+})
+
+
+
 
 //functions.auth.user().onProfileUpdated fix to update instead of only on create
 

@@ -6,7 +6,7 @@ let hasSeo = true;
 let isResponsive = true;
 let hasEcommerce = true;
 let extraFeatures = [];
-let hourlyRate = 350;
+let hourlyRate = 500;
 
 function getStandardQuotation(pages, hasSeo, isResponsive, hasEcommerce, extraFeatures, hourlyRate) {
     let hours = pages * 7;
@@ -41,6 +41,9 @@ frontControl.displayQuote(quotation.price);
 function adjustQuotaion(quotation, custom_deadline) {
     if (quotation.hours - custom_deadline > 0) {
         quotation.price = quotation.original_price + ((quotation.hours - custom_deadline) * quotation.hourlyRate);
+        console.log(((quotation.hours - custom_deadline) * quotation.hourlyRate));
+        console.log(quotation.hours)
+        console.log(custom_deadline)
     }
     else {
         quotation.price = quotation.original_price + ((quotation.hours - custom_deadline) * quotation.hourlyRate) / 50;
@@ -89,7 +92,7 @@ $(document).on('change', '#sliderPages', function() {
 
 $(document).on('change', '#sliderDeadline', function() {
     deadline = $(this).val()
-    adjustQuotaion(quotation, deadline)
+    adjustQuotaion(quotation, deadline * 8)
     frontControl.displayQuote(quotation.price);
 })
 
@@ -105,3 +108,4 @@ function setValues() {
     } else hasEcommerce = false;
 }
 
+frontControl.displayQuote(17210);

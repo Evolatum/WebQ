@@ -45,6 +45,41 @@ var rates = {
     },
 }
 
+//Onject with email validation API and methods
+var emails = {
+    r:["79106cd937b","020f00da097"],
+    checkMail:function(email){
+        var k ="6e1e6";
+        $("#sendEmailButton").attr("disabled", true);
+
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(re.test(String(email).toLowerCase())){
+            $.ajax({
+                url: `http://apilayer.net/api/check?access_key=${this.r[1]}e${k}b${this.r[0]}a66&email=${email}`,
+                method: "GET"
+            }).then(function(response) {
+                if(response.score > 0.7){
+                    $("#sendEmailButton").attr("disabled", false);
+                    $('#developerModal').modal('hide');
+
+                    var userEmail = $("#userEmail").text().trim();
+                    var totalQuote = $("#developerModalText").data("quote");
+                    
+                    //send mail 
+                } else{
+                    $("#emailError").remove();
+                    $("#developerModalText").append(`<span class="text-danger" id="emailError">Invalid E-mail, please use another...</span>`);
+                    $("#sendEmailButton").attr("disabled", false);
+                }
+            });
+        } else {
+            $("#emailError").remove();
+            $("#developerModalText").append(`<span class="text-danger" id="emailError">Invalid E-mail, please use another...</span>`);
+            $("#sendEmailButton").attr("disabled", false);
+        }
+    },
+}
+
 //Object with front-end properties and methods
 var frontControl={
     //Time for fade in and out of content
@@ -96,10 +131,34 @@ var frontControl={
     },
 
     //Changes developer modal text and displays it
-    showModal:function(name,text){
+    showModal:function(name,rate,currency){
+        var currentQuote = $("#totalQuoteMXN").text();
         $("#developerModalName").text(name);
-        $("#developerModalText").text(text);
+        $("#developerModalText").data("quote",currentQuote/500*rate);
+        $("#developerModalText").html(`
+        ${name}'s rate is ${rate} MXN an hour.
+            <br><br>
+            Your quote with this developer would be ${currentQuote/500*rate} MXN.
+            <br><br>
+            The developer charges in ${currency}.
+            <br><br>
+            Send E-mail to developer with current specifications?
+            <br><br>
+            <div class="form-inline">
+                <label for="userEmail">Your E-mail:  </label>
+                <input type="email" class="form-text" id="userEmail" placeholder="user@mail.com">
+            </div>
+        `);
         $('#developerModal').modal('show');
+    },
+
+    //Displays all developers with stack knowledge
+    showDevelopers:function(devs){
+        for(let dev of devs){
+            $("#developersHere").append(`
+            <span class="developerLink" data-name="${dev.displayName}" data-rate="${dev.userRateMXN}" data-currency="${dev.userCurrencyPreference}">${dev.displayName}</span><br>
+            `);
+        }
     },
 
     //Changes currency in developer slider
@@ -151,6 +210,16 @@ $(document).ready(function(){
     //Receives any changes made to currency radio buttons
     $(document).on("click", '.currencyCheck', function(){
         frontControl.changeCurrency($(this).text().trim());
+    });
+
+    //Receives clicks made to developer names
+    $(document).on("click", '.developerLink', function(){
+        frontControl.showModal($(this).data("name"),$(this).data("rate"),$(this).data("currency"));
+    });
+
+    //Receives clicks made to send email
+    $(document).on("click", "#sendEmailButton", function(){
+        emails.checkMail($("#userEmail").val().trim());
     });
 
     //Initializes Bootstrap Tooltips

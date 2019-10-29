@@ -73,6 +73,7 @@ function adjustQuotaion(quotation, custom_deadline) {
     setValues()
     quotation = getStandardQuotation(pages, hasSeo, isResponsive, hasEcommerce, extraFeatures, 500)
     frontControl.displayQuote(quotation.price);
+    //frontControl.showDevelopers(developers);
 });
 
 $(document).on('change', '#sliderPages', function() {

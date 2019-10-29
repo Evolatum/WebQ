@@ -132,15 +132,13 @@ $(document).ready(function(){
             'displayName' : user.displayName,
             'email' : user.email,
             'userRateMXN' : userRateMXN,
-            // 'userSkills' : {userSkills},
             'userCurrencyPreference' : userCurrencyPreference
           }, function(error) {
             if (error) {
-            //   console.log("algo fallo");
             } else {
-            //   console.log("yeiiii");
             }
           });
+        firebase.database().ref('developer/' + user.uid).child('userSkills').set(userSkills);
     }
 
     firebase.auth().signInWithPopup(gitHubAuth).then(function(result) {
@@ -170,8 +168,8 @@ $(document).ready(function(){
         'GraphQL':false,
         'MongoDB':false,
         'MySQL':false,
-        'Node.js':false,
-        'React':false,
+        'NodeJS':false,
+        'React':false
     }
 
     //Checks if any change is made to a skill checkmark, and toggles boolean value

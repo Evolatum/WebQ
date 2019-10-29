@@ -39,7 +39,12 @@ frontControl.displayQuote(quotation.price);
 
 
 function adjustQuotaion(quotation, custom_deadline) {
-    quotation.price = quotation.original_price + ((quotation.hours - custom_deadline) * quotation.hourlyRate);
+    if (quotation.hours - custom_deadline > 0) {
+        quotation.price = quotation.original_price + ((quotation.hours - custom_deadline) * quotation.hourlyRate);
+    }
+    else {
+        quotation.price = quotation.original_price + ((quotation.hours - custom_deadline) * quotation.hourlyRate) / 100;
+    }
 }
 
    $(document).on("change",".quoteCheck .checkContainer", function(){

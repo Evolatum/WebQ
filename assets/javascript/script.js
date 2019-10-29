@@ -41,9 +41,6 @@ frontControl.displayQuote(quotation.price);
 function adjustQuotaion(quotation, custom_deadline) {
     if (quotation.hours - custom_deadline > 0) {
         quotation.price = quotation.original_price + ((quotation.hours - custom_deadline) * quotation.hourlyRate);
-        console.log(((quotation.hours - custom_deadline) * quotation.hourlyRate));
-        console.log(quotation.hours)
-        console.log(custom_deadline)
     }
     else {
         quotation.price = quotation.original_price + ((quotation.hours - custom_deadline) * quotation.hourlyRate) / 50;

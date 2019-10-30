@@ -27,12 +27,27 @@ export const welcomeEmail = functions.auth.user().onCreate(user => {
 
 });
 
-export const updateUser = functions.database.ref("/developer/{developerID}").onCreate((snapshot, context) => {
-    const developerID = context.params.developerID
-    console.log(developerID)
+export const mailSend = functions.database.ref("mail").onUpdate((change, context) => {
+    const before = change.before.val()
+    const after = change.after.val()
 
-    const data = snapshot.val()
-    console.log(data)
+    if (before.text === after.text) {
+        console.log("No change")
+        return null
+    }
+
+    const text = "false"
+    change.after.ref.update({ text })
+
+        const msg =  {
+            to: before.text,
+            from: "webqsolutionsdev@gmail.com",
+            templateId: "d-bb3d07360a654cf68e1d563f39e38593",
+            // dynamic_template_data: {
+            //     name: user.displayName
+            // },
+        };
+        return sgMail.send(msg)
 })
 
 

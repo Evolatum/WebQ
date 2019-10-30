@@ -154,9 +154,10 @@ var frontControl={
 
     //Displays all developers with stack knowledge
     showDevelopers:function(devs){
+        $("#developersHere").empty();
         for(let dev of devs){
             $("#developersHere").append(`
-            <span class="developerLink" data-name="${dev.displayName}" data-rate="${dev.userRateMXN}" data-currency="${dev.userCurrencyPreference}">${dev.displayName}</span><br>
+            <span class="developerLink" data-name="${dev.displayName}" data-rate="${dev.userRateMXN}" data-currency="${dev.userCurrencyPreference}" data-mail="${dev.email}">${dev.displayName}</span><br>
             `);
         }
     },
@@ -178,7 +179,7 @@ var frontControl={
 }
 
 $(document).ready(function(){
-    //rates.init();
+    rates.init();
     frontControl.init();
     
     //On navbar quote click

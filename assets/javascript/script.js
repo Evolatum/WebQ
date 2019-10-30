@@ -78,7 +78,12 @@ function adjustQuotaion(quotation, custom_deadline) {
     setValues()
     quotation = getStandardQuotation(pages, hasSeo, isResponsive, hasEcommerce, extraFeatures, 500)
     frontControl.displayQuote(quotation.price);
-    //frontControl.showDevelopers(developers);
+
+    var developers = [
+        {displayName:"Omar Luna", email: "mrebel62@gmail.com", userRateMXN:500, userCurrencyPreference:"MXN"},
+        {displayName:"Juan Pablo", email: "jjpp@gmail.com", userRateMXN:600,userCurrencyPreference:"USD"},
+        {displayName:"Santiago", email: "santiago.mvao@gmail.com", userRateMXN:500,userCurrencyPreference:"MXN"}]
+    frontControl.showDevelopers(developers);
 });
 
 $(document).on('change', '#sliderPages', function() {

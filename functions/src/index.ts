@@ -31,7 +31,7 @@ export const updateUser = functions.database.ref("/developer/{developerID}").onC
     const developerID = context.params.developerID
     console.log(developerID)
 
-    const data = snapshot.val
+    const data = snapshot.val()
     console.log(data)
 })
 

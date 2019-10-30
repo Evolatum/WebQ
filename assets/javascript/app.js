@@ -4,8 +4,8 @@ var rates = {
     initialized:false,
     decimalCount:100,
     mxnToUsd:0.05228100108169591,
-    mxnToEur:0.04684694307300018,
     mxnToCad:0.06861259498803295,
+    mxnToEur:0.04684694307300018,
     init:function(){
         if(!rates.initialized){
             $.ajax({
